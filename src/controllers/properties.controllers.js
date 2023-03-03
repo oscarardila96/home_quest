@@ -7,10 +7,13 @@ const createProperty = async (req, res, next) => {
     const [{ pictures }] = req.body;
     const result = await PropertiesServices.create(newProperty);
     const { id: propertyId } = result;
-    const picturesArray = pictures.map(url => {
-      return { url, propertyId }
-    });
-    const addedPictures = await PicturesServices.addPictures(picturesArray);
+    if (pictures) {
+      const picturesArray = pictures.map(url => {
+        return { url, propertyId }
+      });
+      const addedPictures = await PicturesServices.addPictures(picturesArray);
+      return addedPictures
+    }
     if (result && addedPictures) {
       res.status(201).json({ message: "Propiedad creada exitosamente" });
     } else {

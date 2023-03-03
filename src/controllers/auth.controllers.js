@@ -31,13 +31,13 @@ const login = async (req, res, next) => {
     if (userConfirmed.confirmed) {
       const result = await AuthServices.login({ email, password });
       if (result.isValid) {
-        const { id, email } = result.user;
-        const userData = { id, email };
+        const { id, email, firstName, lastName, profilePicture } = result.user;
+        const userData = { id, email, firstName, lastName, profilePicture };
         const token = await AuthServices.genToken(userData);
         userData.token = token;
         userData.userId = userData.id;
         delete userData.id;
-        res.json(userData);
+        res.json({ message: "Usuario autenticado correctamente", userData });
       } else {
         next({ message: "Credendiales erroneas" });
       }

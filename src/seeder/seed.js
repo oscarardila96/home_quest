@@ -46,3 +46,11 @@ db.sync({ force: true })
   //{"email" : "oscarardila96@gmail.com", "password": "root123", "firstName": "oscar", "lastName": "ardila" }
 
   // cd React-Native/React-Native-Back
+
+// businessType venta/alquiler
+// propertyType departamento, casa, terreno
+// price
+// sqMeters
+// ambiances
+// parking
+// antiquity
