@@ -13,7 +13,7 @@ const authMiddleware = (req, res, next) => {
         if (err) {
           res.status(498).json({ error: "Invalid token", message: "Token inválido, por favor enviar un token válido" });
         } else {
-          console.log(decoded);
+          // console.log(decoded);
           next();
         }
       })

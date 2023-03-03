@@ -5,7 +5,7 @@ const createFavorite = async (req, res, next) => {
     const newFavorite = req.body;
     const result = await FavoritesServices.create(newFavorite);
     if (result) {
-      res.status(201).json({ message: "Favorito creado exitosamente" });
+      res.status(201).json({ message: "Favorito creado exitosamente", result });
     } else {
       next({ message: "Algo salió mal" });
     }

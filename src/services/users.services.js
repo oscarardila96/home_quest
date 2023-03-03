@@ -54,7 +54,7 @@ class UsersServices {
     try {
       const result = await Users.findOne({
         where: { id },
-        attributes: ["profilePicture"],
+        attributes: ["firstName", "lastName", "profilePicture"],
         include: {
           model: Favorites,
           as: "favorite",

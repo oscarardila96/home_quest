@@ -6,8 +6,15 @@ const pictures = require("../models/pictures.models");
 class FavoritesServices {
   static async create(newFavorite) {
     try {
-      const result = await favorites.create(newFavorite);
-      return result;
+      const { userId, propertyId } = newFavorite;
+      const user = await users.findOne({ where: { id: userId } });
+      const property = await properties.findOne({ where: { id: propertyId } });
+      if (user && property) {
+        const result = await favorites.create(newFavorite);
+        return result;
+      } else {
+        return user;
+      }
     } catch (error) {
       throw error
     }

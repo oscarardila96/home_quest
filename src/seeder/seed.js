@@ -5,13 +5,13 @@ const Favorites = require("../models/favorites.models");
 const db = require("../utils/db");
 
 const users = [
-  { email: "oscarardila96@gmail.com", password: "root123", firstName: "Oscar", lastName: "Ardila", confirmed: true },
+  { email: "oscarardila96@gmail.com", password: "root123", firstName: "Oscar", lastName: "Ardila" },
   { email: "ascsda96@gmail.com", password: "root123", firstName: "Fede", lastName: "Birman" },
   { email: "avdfds6@gmail.com", password: "root123", firstName: "Malena", lastName: "Hernandez" }
 ];
 
 const properties = [
-  { userId: 1, title: "Casa en Buenos Aires", description: "Casa bonita, buena ubicación, excelente precio", price: 9500000, city: "Buenos Aires", region: "Capital", address: "123 calle falsa", sqMeters: 120.5, ambiances: 3, bedrooms: 3, bathrooms: 2, antiquity: 2010, propertyType: "casa", businessType: "venta", parking: true },
+  { userId: 13, title: "Casa en Buenos Aires", description: "Casa bonita, buena ubicación, excelente precio", price: 9500000, city: "Buenos Aires", region: "Capital", address: "123 calle falsa", sqMeters: 120.5, ambiances: 3, bedrooms: 3, bathrooms: 2, antiquity: 10, propertyType: "casa", businessType: "venta", parking: true },
   { userId: 2, title: "Apto grande", description: "Apto grande, buena ubicación, excelente precio", price: 10000000, city: "Mar del Plata", region: "Otra", address: "456 calle falsa", sqMeters: 90, ambiances: 3, bedrooms: 3, bathrooms: 2, antiquity: 2015, propertyType: "departamento", businessType: "alquiler", parking: true },
   { userId: 3, title: "Terreno para negocio", description: "Buena ubicacion, productivo, barato", price: 25000000, city: "Buenos Aires", region: "Posadas", address: "789 calle falsa", sqMeters: 2000, ambiances: 1, bedrooms: 1, bathrooms: 1, antiquity: 2000, propertyType: "terreno", businessType: "venta", parking: false }
 ];
@@ -40,6 +40,8 @@ db.sync({ force: true })
   .finally(() => console.log("Seeding finalizado"));
 
   // {"userId": 1, "title": "Casa en Buenos Aires", "description": "Casa bonita, buena ubicación, excelente precio", "price": 9500000, "imageUrl": "facebook.com", "location": "Buenos Aires", "sqMeters": 120.5, "ambiances": 3, "bedrooms": 3, "bathrooms": 2, "yearBuilt": 2010, "propertyType": "casa", "parking": true}
+  
+  // { "userId": 1, "title": "Casa en Buenos Aires", "description": "Casa bonita, buena ubicación, excelente precio", "price": 9500000, "city": "Buenos Aires", "region": "Capital", "address": "123 calle falsa", "sqMeters": 120.5, "ambiances": 3, "bedrooms": 3, "bathrooms": 2, "antiquity": 10, "propertyType": "casa", "businessType": "venta", "parking": true, "pictures": ["url4", "url5", "url6"] }
 
   // localhost:8000/api/v1/
 

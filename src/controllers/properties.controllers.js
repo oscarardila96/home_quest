@@ -1,20 +1,32 @@
 const PropertiesServices = require("../services/properties.services");
 const PicturesServices = require("../services/pictures.services");
 
+const getAllProperties = async (req, res, next) => {
+  try {
+    const result = await PropertiesServices.getAll()
+    if (result) {
+      res.json(result)
+    } else {
+      next({ message: "Algo salió mal" });
+    }
+  } catch (error) {
+    next(error)
+  }
+};
+
 const createProperty = async (req, res, next) => {
   try {
     const newProperty = req.body;
-    const [{ pictures }] = req.body;
+    const { pictures } = req.body;
     const result = await PropertiesServices.create(newProperty);
     const { id: propertyId } = result;
     if (pictures) {
-      const picturesArray = pictures.map(url => {
-        return { url, propertyId }
+      const picturesArray = pictures.map(pictureUrl => {
+        return { pictureUrl, propertyId }
       });
-      const addedPictures = await PicturesServices.addPictures(picturesArray);
-      return addedPictures
+      await PicturesServices.addPictures(picturesArray);
     }
-    if (result && addedPictures) {
+    if (result) {
       res.status(201).json({ message: "Propiedad creada exitosamente" });
     } else {
       next({ message: "Algo salió mal" });
@@ -53,4 +65,4 @@ const deleteProperty = async (req, res, next) => {
   }
 };
 
-module.exports = { createProperty, updateProperty, deleteProperty };
+module.exports = { createProperty, updateProperty, deleteProperty, getAllProperties };
